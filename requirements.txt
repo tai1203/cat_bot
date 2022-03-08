@@ -1,0 +1,6 @@
+line-bot-sdk
+Flask
+jieba
+scikit-learn
+google-cloud-language
+Pillow

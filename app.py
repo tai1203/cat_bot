@@ -58,7 +58,7 @@ def random_dog_url():
     print(type(dog_url))
     print(dog_url)
     return dog_url
-
+ 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     cat_url = random_cat_url()

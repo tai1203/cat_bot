@@ -77,7 +77,8 @@ def handle_message(event):
     elif message == 'help':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text= '需要貓貓時請說喵 要狗狗時請說汪'))
             
-
+  
+  
 @handler.add(FollowEvent)
 def handle_follow_event(event):
     line_bot_api.reply_message(

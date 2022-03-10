@@ -8,4 +8,7 @@
 api: https://api.thecatapi.com/v1/images/search
 
 chatbot: line
+
+![image](./readme_gif/catdogbot.gif)
+
 >>>>>>> 86bde9d7dac58ccb36256e1bcabdaeaadeb8f29f

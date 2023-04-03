@@ -39,52 +39,52 @@ def callback():
 
     return 'OK'
 
-def random_cat_url():
-    r = requests.get("https://api.thecatapi.com/v1/images/search", allow_redirects=True)
-    print(f"random_cat_url: {r.status_code}")
+# def random_cat_url():
+#     r = requests.get("https://api.thecatapi.com/v1/images/search", allow_redirects=True)
+#     print(f"random_cat_url: {r.status_code}")
 
-    json = r.json()
-    cat_url = json[0]["url"]
-    print(type(cat_url))
-    print(cat_url)
-    return cat_url
+#     json = r.json()
+#     cat_url = json[0]["url"]
+#     print(type(cat_url))
+#     print(cat_url)
+#     return cat_url
 
-def random_dog_url():
-    r = requests.get("https://api.thedogapi.com/v1/images/search", allow_redirects=True)
-    print(f"random_dog_url: {r.status_code}")
+# def random_dog_url():
+#     r = requests.get("https://api.thedogapi.com/v1/images/search", allow_redirects=True)
+#     print(f"random_dog_url: {r.status_code}")
     
-    json = r.json()
-    dog_url = json[0]["url"]
-    print(type(dog_url))
-    print(dog_url)
-    return dog_url
+#     json = r.json()
+#     dog_url = json[0]["url"]
+#     print(type(dog_url))
+#     print(dog_url)
+#     return dog_url
  
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    cat_url = random_cat_url()
-    dog_url = random_dog_url()
-    message = event.message.text
-    if message == '喵':
-        try:
-            line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= cat_url, preview_image_url= cat_url))
-        except:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))
-    elif message == '汪':
-        try:
-            line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= dog_url, preview_image_url= dog_url))
-        except:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))
-    elif message == 'help':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= '需要貓貓時請說喵 要狗狗時請說汪'))
+# @handler.add(MessageEvent, message=TextMessage)
+# def handle_message(event):
+#     cat_url = random_cat_url()
+#     dog_url = random_dog_url()
+#     message = event.message.text
+#     if message == '喵':
+#         try:
+#             line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= cat_url, preview_image_url= cat_url))
+#         except:
+#             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))
+#     elif message == '汪':
+#         try:
+#             line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= dog_url, preview_image_url= dog_url))
+#         except:
+#             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))
+#     elif message == 'help':
+#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text= '需要貓貓時請說喵 要狗狗時請說汪'))
             
   
   
-@handler.add(FollowEvent)
-def handle_follow_event(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text= '嗨嗨尼好 需要貓貓時請說喵 要狗狗時請說汪')
-    )
+# @handler.add(FollowEvent)
+# def handle_follow_event(event):
+#     line_bot_api.reply_message(
+#         event.reply_token,
+#         TextSendMessage(text= '嗨嗨尼好 需要貓貓時請說喵 要狗狗時請說汪')
+#     )
 
 # openapi: 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
     

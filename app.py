@@ -86,7 +86,7 @@ def hi_chat_ai(event):
             print(text_message)
             line_bot_api.reply_message(event.reply_token,text_message)
         else:
-            reply_msg = "記得輸入'hi ai' 的關鍵字唷"
+            reply_msg = "記得輸入'hi ai' 的關鍵字唷, 或是輸入“help 將會有說明"
             text_message = TextSendMessage(text=reply_msg)
             print(text_message)
             line_bot_api.reply_message(event.reply_token,text_message)

@@ -70,7 +70,7 @@ def hi_chat_ai(event):
     message = event.message.text
     reply_msg = ''
     response = openai.Completion.create(
-        model='text-davinci-003',
+        model='text-davinci-035',
         prompt=message,
         max_tokens=256,
         temperature=0.5,

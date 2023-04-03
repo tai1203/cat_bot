@@ -67,31 +67,18 @@ def random_dog_url():
     return dog_url
  
 def hi_chat_ai(event):
-    try:
-        # 取出文字的前五個字元，轉換成小寫
-        message = event.message.text
-        ai_msg = message[:5].lower()
-        reply_msg = ''
-        # 取出文字的前五個字元是 hi ai:
-        if ai_msg == 'hi ai':
-            # 將第六個字元之後的訊息發送給 OpenAI
-            response = openai.Completion.create(
-                model='text-davinci-003',
-                prompt=message[5:],
-                max_tokens=256,
-                temperature=0.5,
-                )
-            # 接收到回覆訊息後，移除換行符號
-            reply_msg = response["choices"][0]["text"].replace('\n','')
-            print(text_message)
-            line_bot_api.reply_message(event.reply_token,text_message)
-        else:
-            reply_msg = "記得輸入'hi ai' 的關鍵字唷, 或是輸入“help 將會有說明"
-            text_message = TextSendMessage(text=reply_msg)
-            print(text_message)
-            line_bot_api.reply_message(event.reply_token,text_message)
-    except:
-        print('error1')
+    message = event.message.text
+    reply_msg = ''
+    response = openai.Completion.create(
+        model='text-davinci-003',
+        prompt=message,
+        max_tokens=256,
+        temperature=0.5,
+    )
+        # 接收到回覆訊息後，移除換行符號
+    reply_msg = response["choices"][0]["text"].replace('\n','')
+    print(reply_msg)
+    line_bot_api.reply_message(event.reply_token,reply_msg)
     return 'OK'
  
  
@@ -107,7 +94,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))
     elif message == '汪':
         try:
-            line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= dog_url, preview_image_url= dog_url))
+            line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= dog_url, preview_image_url= dog_url)) 
         except:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))
     elif message == 'help':
@@ -116,7 +103,7 @@ def handle_message(event):
         try:
             hi_chat_ai(event)
         except:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error2'))            
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))            
   
   
 @handler.add(FollowEvent)

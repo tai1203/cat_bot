@@ -17,8 +17,8 @@ import requests
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('token')
-handler = WebhookHandler('secret')
+line_bot_api = LineBotApi('h1FJ4YvejcImlsyth6H0qqcsCUvrF4YsF/J0pJeh02DnESHAGrDa1ElreOtBsrYAWFjrEa6M85GmPr9KAM3zVMlmLT1IgUoHmyYEksXAFEw+mNdaG1zTVTjTih0obaLDm0B7YuRMtxZ2Fmg3jzh1mAdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('0d463d094be0b7ab593202cf9d8d1cd8')
 
 
 @app.route("/callback", methods=['POST'])
@@ -85,12 +85,7 @@ def handle_follow_event(event):
         event.reply_token,
         TextSendMessage(text= '嗨嗨尼好 需要貓貓時請說喵 要狗狗時請說汪')
     )
-@handler.add(JoinEvent)
-def handle_join_event(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text= '嗨嗨尼好 需要貓貓時請說喵 要狗狗時請說汪')
-    )
+
     
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=environ.get('PORT'))

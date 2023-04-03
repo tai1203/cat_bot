@@ -69,26 +69,27 @@ def random_dog_url():
 def hi_chat_ai(event):
     try:
         # 取出文字的前五個字元，轉換成小寫
-        msg = event.message.text
-        ai_msg = msg[:6].lower()
+        message = event.message.text
+        ai_msg = message[:6].lower()
         reply_msg = ''
         # 取出文字的前五個字元是 hi ai:
         if ai_msg == 'hi ai:':
             # 將第六個字元之後的訊息發送給 OpenAI
             response = openai.Completion.create(
                 model='text-davinci-003',
-                prompt=msg[6:],
+                prompt=message[6:],
                 max_tokens=256,
                 temperature=0.5,
                 )
             # 接收到回覆訊息後，移除換行符號
             reply_msg = response["choices"][0]["text"].replace('\n','')
         else:
-            reply_msg = msg
+            reply_msg = message
             text_message = TextSendMessage(text=reply_msg)
+            print(text_message)
             line_bot_api.reply_message(event.reply_token,text_message)
     except:
-        print('error')
+        print('error1')
     return 'OK'
  
  
@@ -109,7 +110,11 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))
     elif message == 'help':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text= '需要貓貓時請說喵 要狗狗時請說汪'))
-            
+    else:
+        try:
+            hi_chat_ai(event)
+        except:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error2'))            
   
   
 @handler.add(FollowEvent)

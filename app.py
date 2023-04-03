@@ -73,7 +73,7 @@ def hi_chat_ai(event):
         ai_msg = message[:5].lower()
         reply_msg = ''
         # 取出文字的前五個字元是 hi ai:
-        if ai_msg == 'hi ai:':
+        if ai_msg == 'hi ai':
             # 將第六個字元之後的訊息發送給 OpenAI
             response = openai.Completion.create(
                 model='text-davinci-003',

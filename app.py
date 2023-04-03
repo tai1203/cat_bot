@@ -52,7 +52,7 @@ def random_cat_url():
 def random_dog_url():
     r = requests.get("https://api.thedogapi.com/v1/images/search", allow_redirects=True)
     print(f"random_dog_url: {r.status_code}")
-
+    
     json = r.json()
     dog_url = json[0]["url"]
     print(type(dog_url))
@@ -86,6 +86,7 @@ def handle_follow_event(event):
         TextSendMessage(text= '嗨嗨尼好 需要貓貓時請說喵 要狗狗時請說汪')
     )
 
+# openapi: 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
     
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=environ.get('PORT'))

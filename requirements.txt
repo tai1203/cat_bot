@@ -4,3 +4,4 @@ jieba
 scikit-learn
 google-cloud-language
 Pillow
+openai

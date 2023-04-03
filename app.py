@@ -14,14 +14,14 @@ from os import environ
 
 import requests
 import os
-# import openai
-# response = openai.Completion.create(engine="text-davinci-001", prompt=prompt, max_tokens=6)
+import openai
+response = openai.Completion.create(engine="text-davinci-001", prompt=prompt, max_tokens=6)
 #API token:
 line_bot_api = LineBotApi('h1FJ4YvejcImlsyth6H0qqcsCUvrF4YsF/J0pJeh02DnESHAGrDa1ElreOtBsrYAWFjrEa6M85GmPr9KAM3zVMlmLT1IgUoHmyYEksXAFEw+mNdaG1zTVTjTih0obaLDm0B7YuRMtxZ2Fmg3jzh1mAdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('0d463d094be0b7ab593202cf9d8d1cd8')
-# openai.organization = "org-igpnlFrJ3rIShmF3fr6uCkEl"
-# openai.api_key = os.getenv("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")
-# openai.Model.list()
+openai.organization = "org-igpnlFrJ3rIShmF3fr6uCkEl"
+openai.api_key = os.getenv("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")
+openai.Model.list()
 
 app = Flask(__name__)
 
@@ -67,30 +67,30 @@ def random_dog_url():
     print(dog_url)
     return dog_url
  
-# def hi_chat_ai(event):
-#     try:
-#         # 取出文字的前五個字元，轉換成小寫
-#         msg = event.message.text
-#         ai_msg = msg[:6].lower()
-#         reply_msg = ''
-#         # 取出文字的前五個字元是 hi ai:
-#         if ai_msg == 'hi ai:':
-#             # 將第六個字元之後的訊息發送給 OpenAI
-#             response = openai.Completion.create(
-#                 model='text-davinci-003',
-#                 prompt=msg[6:],
-#                 max_tokens=256,
-#                 temperature=0.5,
-#                 )
-#             # 接收到回覆訊息後，移除換行符號
-#             reply_msg = response["choices"][0]["text"].replace('\n','')
-#         else:
-#             reply_msg = msg
-#             text_message = TextSendMessage(text=reply_msg)
-#             line_bot_api.reply_message(event.reply_token,text_message)
-#     except:
-#         print('error')
-#     return 'OK'
+def hi_chat_ai(event):
+    try:
+        # 取出文字的前五個字元，轉換成小寫
+        msg = event.message.text
+        ai_msg = msg[:6].lower()
+        reply_msg = ''
+        # 取出文字的前五個字元是 hi ai:
+        if ai_msg == 'hi ai:':
+            # 將第六個字元之後的訊息發送給 OpenAI
+            response = openai.Completion.create(
+                model='text-davinci-003',
+                prompt=msg[6:],
+                max_tokens=256,
+                temperature=0.5,
+                )
+            # 接收到回覆訊息後，移除換行符號
+            reply_msg = response["choices"][0]["text"].replace('\n','')
+        else:
+            reply_msg = msg
+            text_message = TextSendMessage(text=reply_msg)
+            line_bot_api.reply_message(event.reply_token,text_message)
+    except:
+        print('error')
+    return 'OK'
  
  
 @handler.add(MessageEvent, message=TextMessage)

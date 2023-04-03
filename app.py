@@ -84,15 +84,15 @@ def hi_chat_ai(event):
  
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    cat_url = random_cat_url()
-    dog_url = random_dog_url()
     message = event.message.text
     if message == '喵':
+        cat_url = random_cat_url()
         try:
             line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= cat_url, preview_image_url= cat_url))
         except:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))
     elif message == '汪':
+        dog_url = random_dog_url()
         try:
             line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= dog_url, preview_image_url= dog_url)) 
         except:

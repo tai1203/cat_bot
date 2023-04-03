@@ -70,21 +70,23 @@ def hi_chat_ai(event):
     try:
         # 取出文字的前五個字元，轉換成小寫
         message = event.message.text
-        ai_msg = message[:6].lower()
+        ai_msg = message[:5].lower()
         reply_msg = ''
         # 取出文字的前五個字元是 hi ai:
         if ai_msg == 'hi ai:':
             # 將第六個字元之後的訊息發送給 OpenAI
             response = openai.Completion.create(
                 model='text-davinci-003',
-                prompt=message[6:],
+                prompt=message[5:],
                 max_tokens=256,
                 temperature=0.5,
                 )
             # 接收到回覆訊息後，移除換行符號
             reply_msg = response["choices"][0]["text"].replace('\n','')
+            print(text_message)
+            line_bot_api.reply_message(event.reply_token,text_message)
         else:
-            reply_msg = message
+            reply_msg = "記得輸入'hi ai' 的關鍵字唷"
             text_message = TextSendMessage(text=reply_msg)
             print(text_message)
             line_bot_api.reply_message(event.reply_token,text_message)

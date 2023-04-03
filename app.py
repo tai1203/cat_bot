@@ -110,7 +110,7 @@ def handle_message(event):
 def handle_follow_event(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text= '嗨嗨尼好 需要貓貓時請說喵 要狗狗時請說汪')
+        TextSendMessage(text= '嗨嗨尼好 需要貓貓時請說喵 要狗狗時請說汪 若都不要只想跟ai 聊天，就直接打字即可')
     )
 
 # openapi: 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

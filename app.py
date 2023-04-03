@@ -78,7 +78,7 @@ def hi_chat_ai(event):
         # 接收到回覆訊息後，移除換行符號
     reply_msg = response["choices"][0]["text"].replace('\n','')
     print(reply_msg)
-    line_bot_api.reply_message(event.reply_token,reply_msg)
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text= reply_msg))
     return 'OK'
  
  

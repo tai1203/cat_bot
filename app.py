@@ -19,7 +19,7 @@ import openai
 line_bot_api = LineBotApi('h1FJ4YvejcImlsyth6H0qqcsCUvrF4YsF/J0pJeh02DnESHAGrDa1ElreOtBsrYAWFjrEa6M85GmPr9KAM3zVMlmLT1IgUoHmyYEksXAFEw+mNdaG1zTVTjTih0obaLDm0B7YuRMtxZ2Fmg3jzh1mAdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('0d463d094be0b7ab593202cf9d8d1cd8')
 openai.organization = "org-igpnlFrJ3rIShmF3fr6uCkEl"
-openai.api_key = os.getenv("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")
+openai.api_key = "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"
 openai.Model.list()
 
 app = Flask(__name__)

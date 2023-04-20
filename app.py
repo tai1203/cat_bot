@@ -90,20 +90,20 @@ def handle_message(event):
         try:
             line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= cat_url, preview_image_url= cat_url))
         except:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error1'))
     elif message == '汪':
         dog_url = random_dog_url()
         try:
             line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url= dog_url, preview_image_url= dog_url)) 
         except:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error2'))
     elif message == 'help':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= '需要貓貓時請說喵 要狗狗時請說汪'))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= '嗨嗨尼好 需要貓貓時請說喵 要狗狗時請說汪 若都不要只想跟ai 聊天，就直接打字即可'))
     else:
         try:
             hi_chat_ai(event)
         except:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error'))            
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= 'error3'))            
   
   
 @handler.add(FollowEvent)
